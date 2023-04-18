@@ -1,0 +1,12 @@
+-- Select all names in the database
+SELECT * FROM names
+
+-- Insert your own name
+INSERT INTO names (name, created_at, updated_at)
+VALUES ('Rishad', now(), now());
+SELECT * FROM names
+
+-- Insert another name or, NINJA BONUS: insert more than one name in a single statement.
+INSERT INTO names (name, created_at, updated_at)
+VALUES ('Yasin', now(), now()), ('Ali', now(), now());
+SELECT * FROM names
