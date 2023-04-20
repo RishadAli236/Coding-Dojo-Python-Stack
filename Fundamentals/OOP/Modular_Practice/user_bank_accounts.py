@@ -1,7 +1,7 @@
-from my_modules import user
+from my_modules.user import User
 
-user_rishad = user.User("Rishad", "email")
-user_yasin = user.User("Yasin", "email")
+user_rishad = User("Rishad", "email")
+user_yasin = User("Yasin", "email")
 
 user_rishad.make_deposit("Checking", 1000).display_user_balance("Checking").make_withdrawal("Checking", 500).display_user_balance("Checking")
 user_rishad.make_deposit("Savings", 2000).display_user_balance("Savings").make_withdrawal("Savings", 700).display_user_balance("Savings")

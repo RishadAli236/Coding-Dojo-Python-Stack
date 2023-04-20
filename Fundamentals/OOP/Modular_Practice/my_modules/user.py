@@ -1,11 +1,11 @@
-from my_modules import bank_account
+from my_modules.bank_account import BankAccount
 
 class User:
     def __init__(self, name, email):
         self.name = name
         self.email = email
-        self.savings_account = bank_account.BankAccount(int_rate = 0.02, balance = 0)
-        self.checking_account = bank_account.BankAccount(int_rate = 0, balance = 0)
+        self.savings_account = BankAccount(int_rate = 0.02, balance = 0)
+        self.checking_account = BankAccount(int_rate = 0, balance = 0)
 
     def make_deposit(self, account_type, amount):
         if account_type == "Savings":
