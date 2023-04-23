@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1{
+    text-align: center;
+    margin: 10px auto;
+    padding: 10px;
+    width:fit-content
+}
+
+.container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: fit-content; *//* This will have the same effect as the 3 lines above - it changes the width of the container according to the content*/
+}
+
+.row{
+    display: flex;
+    height: 65px;
+}
+
+.square{
+    width: 65px;
+    height: 65px;
+}
+

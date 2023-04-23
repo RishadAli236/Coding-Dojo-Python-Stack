@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+    <style>
+        h1{
+            background-color: {{dark_color}};
+            color: {{light_color}};
+        }
+
+        .light{
+            background-color: {{light_color}};
+        }
+
+        .dark{
+            background-color: {{dark_color}};
+        }
+    </style>
+    <title>Checkerboard</title>
+</head>
+<body>
+    <h1>*** Checkerboard ***</h1>
+    <div class="container">
+        {% for row in range (num_of_rows) %} 
+            <div class="row">
+                {% for column in range (num_of_columns) %}
+                        <div class="light square">
+                        </div>
+                        <div class="dark square">
+                        </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for column in range (num_of_columns) %}
+                        <div class="dark square">
+                        </div>
+                        <div class="light square">
+                        </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
