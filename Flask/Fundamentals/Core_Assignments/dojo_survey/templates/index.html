@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{bootstrap.load_css()}}
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container my-3">
+        <div  class="w-50 mx-auto text-bg-dark p-5">
+            <h3 class="text-warning">Dojo Survey</h3>
+            <form action="/process" method="POST">
+                <label for="name">Your name: </label>
+                <input type="text" name="name"  class="form-control form-control-sm"><br>
+                <label for="location">Dojo Location: </label>
+                <select name="location" id="location"  class="form-select">
+                    <option>-- Select A Location</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Online">Online</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Burbank">Burbank</option>
+                    <option value="Bellevue">Bellevue</option>
+                </select><br>
+                <label for="language">Favorite Language: </label>
+                <select name="language" id="language"  class="form-select">
+                    <option>-- Select A Language</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Python">Python</option>
+                    <option value="C#">C#</option>
+                </select><br>
+                <label for="comment">Comments: </label>
+                <textarea name="comment" id="comment" cols="30" rows="10"  class="form-control form-control-sm"></textarea><br>
+                <input type="submit" value="Submit" class="btn btn-warning">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
