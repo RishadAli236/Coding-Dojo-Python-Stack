@@ -55,5 +55,11 @@ ON friendships.friend_id = users2.id
 WHERE users.id = 3
 ORDER BY friend_first_name, friend_last_name;
 
-
+SELECT first_name, last_name, count(user_id) as num_of_friends
+FROM users
+JOIN friendships
+ON users.id = friendships.user_id
+GROUP BY user_id
+ORDER BY num_of_friends desc
+LIMIT 1 
 
