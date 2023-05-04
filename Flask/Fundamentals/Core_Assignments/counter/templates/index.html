@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/style.css')}}">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Counter</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Counter</h1>
+        <h3>{{session["counter"]}}</h3>
+        <h3>This page has been visited {{session.visit_count}} time(s)</h3>
+        <!-- NINJA BONUS: Add a +2 button underneath the counter and a new route that will increment the counter by 2 -->
+        <form action="/add_two">
+            <input type="submit" value="+2">
+        </form>
+        <!-- NINJA BONUS: Add a Reset button to reset the counter -->
+        <form action="/destroy_session">
+            <input type="submit" value="Reset">
+        </form>
+        <!-- SENSEI BONUS: Add a form that allows the user to specify the increment of the counter and have the counter increment accordingly -->
+        <form action="/process" method="POST">
+            <input type="text" name="increament">
+            <input type="submit" value="Set Increament">
+        </form>
+    </div>
+</body>
+</html>
