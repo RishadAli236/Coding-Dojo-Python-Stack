@@ -8,6 +8,7 @@ def index():
 
 @app.route('/create',methods=['POST'])
 def create():
+    print(type(request.form["calories"]))
     data = {
         "name":request.form['name'],
         "bun": request.form['bun'],

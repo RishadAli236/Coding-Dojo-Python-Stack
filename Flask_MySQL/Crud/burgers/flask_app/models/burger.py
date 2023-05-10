@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class Burger:
+    db = "burgers_schema" #name of database
     def __init__(self,data):
         self.id = data['id']
         self.name= data['name']
@@ -12,13 +13,14 @@ class Burger:
 
     @classmethod
     def save(cls,data):
-        query = "INSERT INTO burgers (name,bun,meat,calories,created_at,updated_at) VALUES (%(name)s,%(bun)s,%(meat)s,%(calories)s,NOW(),NOW())"
-        return connectToMySQL('burgers').query_db(query,data)
+        # When creating a burger we will need to pass the restaurant id as well
+        query = "INSERT INTO burgers (name,bun,meat,calories,created_at,updated_at, restaurant_id) VALUES (%(name)s,%(bun)s,%(meat)s,%(calories)s,NOW(),NOW(), %(restaurant_id)s);"
+        return connectToMySQL(cls.db).query_db(query,data)
 
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM burgers;"
-        burgers_from_db =  connectToMySQL('burgers').query_db(query)
+        burgers_from_db =  connectToMySQL(cls.db).query_db(query)
         burgers =[]
         for b in burgers_from_db:
             burgers.append(cls(b))
@@ -27,16 +29,16 @@ class Burger:
     @classmethod
     def get_one(cls,data):
         query = "SELECT * FROM burgers WHERE burgers.id = %(id)s;"
-        burger_from_db = connectToMySQL('burgers').query_db(query,data)
+        burger_from_db = connectToMySQL(cls.db).query_db(query,data)
 
         return cls(burger_from_db[0])
 
     @classmethod
     def update(cls,data):
         query = "UPDATE burgers SET name=%(name)s, bun=%(bun)s, meat=%(meat)s, calories=%(calories)s,updated_at = NOW() WHERE id = %(id)s;"
-        return connectToMySQL('burgers').query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query,data)
 
     @classmethod
     def destroy(cls,data):
         query = "DELETE FROM burgers WHERE id = %(id)s;"
-        return connectToMySQL('burgers').query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query,data)
