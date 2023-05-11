@@ -22,4 +22,15 @@ class Restaurant:
         results = connectToMySQL(cls.db).query_db(query, data)
         print(results)
         restaurant = cls(results[0])
+        for record in results:
+            burger_data = {
+                "id" : record["burgers.id"],
+                "name" : record["burgers.name"],
+                "bun" : record["bun"],
+                "meat" : record["meat"],
+                "calories" : record["calories"],
+                "created_at" : record["burgers.created_at"],
+                "updated_at" : record["burgers.updated_at"],
+                "restaurant_id" : record["restaurant_at"]
+            }
         return restaurant
