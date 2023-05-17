@@ -12,7 +12,7 @@ class Restaurant:
 
     @classmethod
     def save(cls,data):
-        query = "INSERT INTO restaurants ( name , created_at , updated_at, restaurant_id ) VALUES (%(name)s,NOW(),NOW());"
+        query = "INSERT INTO restaurants ( name , created_at , updated_at) VALUES (%(name)s,NOW(),NOW());"
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
     
@@ -31,6 +31,6 @@ class Restaurant:
                 "calories" : record["calories"],
                 "created_at" : record["burgers.created_at"],
                 "updated_at" : record["burgers.updated_at"],
-                "restaurant_id" : record["restaurant_at"]
+                "restaurant_id" : record["restaurant_id"]
             }
         return restaurant

@@ -1,5 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models import topping
+from flask import flash
 
 class Burger:
     db = "burgers_schema" #name of database
@@ -67,4 +68,26 @@ class Burger:
             }
             burger.toppings.append(topping.Topping(topping_data))
         return burger
+    
+    @staticmethod
+    # Static methods don't have self or cls passed into the parameters.
+    # We do need to take in a parameter to represent our burger
+    # The method takes in a parameter which will be the data that needs to be validated
+    # The data will be assumed to be in form of a dictionary
+    def validate_burger(burger):
+        is_valid = True # assume this is true
+        if len(burger["name"]) < 3:
+            flash("Name must be at least 3 characters", "name")
+            is_valid = False
+        if len(burger["bun"]) < 3:
+            flash("Bun must be at least 3 characters", "bun")
+            is_valid = False
+        if len(burger["meat"]) < 3:
+            flash("Meat must be at least 3 characters", "meat")
+            is_valid = False
+        if len(burger["calories"]) < 1 or (len(burger["calories"]) > 1 and int(burger["calories"]) < 200):
+            flash("Calories must be 200 or greater", "calories")
+            is_valid = False
+        return is_valid
+
 

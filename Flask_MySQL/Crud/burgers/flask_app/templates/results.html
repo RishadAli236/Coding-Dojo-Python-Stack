@@ -15,7 +15,7 @@
         {% for burger in all_burgers %}
             <div class="card col-3 bg-dark text-light">
                 <div class="card-body">
-                    <h2 class="card-title text-primary"><a href="/show/{{burger['id']}}">{{ burger['name'] }}</a></h2>
+                    <h2 class="card-title text-primary"><a href="/show/{{burger['id']}}">{{ burger.name }}</a></h2>
                 </div>
                 <div class="card-footer">
                     <p class="card-subtitle">Created on: {{ burger['created_at'].strftime("%B %d, %Y  at %H:%M:%S") }}</p>

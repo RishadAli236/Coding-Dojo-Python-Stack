@@ -8,12 +8,18 @@ def index():
 
 @app.route('/create',methods=['POST'])
 def create():
-    print(type(request.form["calories"]))
+    print(request.form)
+    # if there are errors:
+    # We call the staticmethod on Burger model to validate
+    if not Burger.validate_burger(request.form):
+        # redirect to the route where the burger form is rendered.
+        return redirect("/")
     data = {
         "name":request.form['name'],
         "bun": request.form['bun'],
         "meat": request.form['meat'],
-        "calories": request.form['calories']
+        "calories": request.form['calories'],
+        "restaurant_id" : int(request.form["restaurant_id"])
     }
     Burger.save(data)
     return redirect('/burgers')
