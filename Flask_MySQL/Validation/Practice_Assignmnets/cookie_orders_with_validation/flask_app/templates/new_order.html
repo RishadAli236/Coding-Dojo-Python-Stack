@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <h1>Log a New Order</h1>
+    {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+        {% if messages %}                            <!-- check if there are any messages -->
+            {% for message in messages %}            <!-- loop through the messages -->
+                <p>{{message}}</p>                   <!-- display each message in a paragraph tag -->
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <a href="/cookies">Back to purchases</a>
+    <form action="/log_new_order" method="POST">
+        <div>
+            <label for="customer_name">Name</label>
+            <input type="text" name="customer_name" value="{{session.customer_name}}">
+        </div>
+        <div>
+            <label for="cookie_type">Cookie Type</label>
+            <input type="text" name="cookie_type" value="{{session.cookie_type}}">
+        </div>
+        <div>
+            <label for="number_of_boxes">Number_of_boxes</label>
+            <input type="number" name="number_of_boxes" value="{{session.number_of_boxes}}">
+        </div>
+        <div>
+            <input type="submit" value="Log">
+        </div>
+    </form>
+</body>
+</html>

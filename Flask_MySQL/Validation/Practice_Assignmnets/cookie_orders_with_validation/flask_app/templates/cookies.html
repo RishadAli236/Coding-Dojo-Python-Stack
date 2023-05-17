@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <h1>Cookie Orders</h1>
+    <h3>All Orders</h3>
+    <a href="/cookies/new">+ New Order</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer_name</th>
+                <th>Cookie_type</th>
+                <th>Number_of_boxes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in all_orders %}
+                <tr>
+                    <td>{{order.customer_name}}</td>
+                    <td>{{order.cookie_type}}</td>
+                    <td>{{order.number_of_boxes}}</td>
+                    <td>
+                        <a href="/cookies/{{order.id}}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
