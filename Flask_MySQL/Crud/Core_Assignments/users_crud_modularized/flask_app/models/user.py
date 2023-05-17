@@ -1,4 +1,8 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
+import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
     db = "users_schema"
@@ -41,3 +45,37 @@ class User:
         query = "DELETE FROM users WHERE id = %(id)s;"
         data = {"id" : user_id}
         connectToMySQL(cls.db).query_db(query, data)
+
+    # Ninja Bonus
+    @classmethod
+    def get_all_emails(cls):
+        query = "SELECT email FROM users;"
+        results = connectToMySQL(cls.db).query_db(query)
+        print(results)
+        emails = []
+        for record in results:
+            emails.append(record["email"])
+        print(emails)
+        return emails
+
+    @staticmethod
+    def is_valid(user_data):
+        is_valid = True
+        if len(user_data["first_name"]) < 1:
+            is_valid = False
+            flash("First Name is required")
+        if len(user_data["last_name"]) < 1:
+            is_valid = False
+            flash("Last Name is required")
+        if len(user_data["email"]) < 1:
+            is_valid = False
+            flash("Email is required")
+        elif not EMAIL_REGEX.match(user_data["email"]):
+            is_valid = False
+            flash("Invalid Email")
+        # Ninja Bonus
+        elif user_data["email"] in User.get_all_emails():
+            is_valid = False
+            flash("This email already exists")
+        return is_valid
+        
